@@ -22,6 +22,8 @@ import retrofit2.Response;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.List;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -171,6 +173,7 @@ public class ChatActivity extends BaseActivity {
                     showToast("Notification sent successfully");
                 } else {
                     showToast("Error: " + response.code());
+                    Log.i("Information ","response : "+response) ;
                 }
             }
 

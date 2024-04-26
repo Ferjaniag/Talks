@@ -30,8 +30,9 @@ public class Constants {
     public static final String REMOTE_MSG_DATA = "data";
     public static final String REMOTE_REGISTRATION_IDS = "registration_ids";
 
-    // Update this with your actual FCM server key
-    private static final String FCM_SERVER_KEY = "AAAAwotchDM:APA91bGLQ3rXbfWgFpOWpm8qbJ2gZewT6RYL4Y3JOtSh2JFfHl9lf9QjrGE8VOW8lip775rf297I9kdaMTxhUfjwnUPKFP_nunmwC4_-KWS-8jEGrl81WbgSVwJ_dbVQweVKQqixWyXf";
+
+    private static final String
+            FCM_SERVER_KEY ="AAAAT_4ihuQ:APA91bGcCc7LbRFlMOCRaBzkJD_rAyW4sdSsDoQVG6H0HvEupR8pAUeKjFnQdzphaGzXwKfwz-OzfEpHrNDX__2QdfW-FTvpUdg6Z0y99kfdX28nrdF2LEnGClTrtvOETvffyQR_09CQ" ;
 
     private static HashMap<String, String> remoteMsgHeaders = null;
 
