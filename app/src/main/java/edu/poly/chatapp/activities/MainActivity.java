@@ -17,12 +17,14 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import edu.poly.chatapp.R;
 import edu.poly.chatapp.adapters.RecentConversationsAdapter;
 import edu.poly.chatapp.databinding.ActivityMainBinding;
 import edu.poly.chatapp.listeners.ConversionListener;
@@ -38,13 +40,24 @@ public class MainActivity extends BaseActivity implements ConversionListener {
     private List<ChatMessage> conversations;
     private RecentConversationsAdapter conversationsAdapter;
     private FirebaseFirestore database;
+    private RoundedImageView imageProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        imageProfile = findViewById(edu.poly.chatapp.R.id.imageProfile);
+
+        imageProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+            }
+        });
         preferenceManager = new PreferenceManager(getApplicationContext());
         init();
         loadUserDetails();
