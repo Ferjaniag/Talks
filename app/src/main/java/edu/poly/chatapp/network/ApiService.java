@@ -9,7 +9,7 @@ import retrofit2.http.POST;
 
 public interface ApiService {
 
-    @POST("sent")
+    @POST("send")
     Call<String> sendMessage(
             @HeaderMap HashMap<String, String> headers,
             @Body String messageBody
