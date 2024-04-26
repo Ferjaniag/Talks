@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "343566092004",
+    "project_id": "messenger-1386b",
+    "storage_bucket": "messenger-1386b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:343566092004:android:3eef4e269e84adfa364ef1",
+        "android_client_info": {
+          "package_name": "edu.poly.chatapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi6BWoV40fXix3wrfmrG0KMEPnzJtSA1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
