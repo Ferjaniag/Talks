@@ -1,6 +1,9 @@
 package edu.poly.chatapp.activities;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -8,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import edu.poly.chatapp.R;
 import edu.poly.chatapp.models.User;
@@ -35,12 +40,38 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void loadUserProfile() {
-        String name = preferenceManager.getString(Constants.KEY_NAME);
-        String email = preferenceManager.getString(Constants.KEY_EMAIL);
-        String imageUrl = preferenceManager.getString(Constants.KEY_IMAGE);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        String userId = preferenceManager.getString(Constants.KEY_USER_ID);
 
-        textViewName.setText(name);
-        textViewEmail.setText(email);
-        Glide.with(this).load(imageUrl).into(imageViewProfile);
+        DocumentReference userRef = db.collection(Constants.KEY_COLLECTION_USERS)
+                .document(userId);
+
+        userRef.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                User user = documentSnapshot.toObject(User.class);
+                if (user != null) {
+                    String name = user.name;
+                    String email = user.email;
+                    String base64EncodedImage = user.image; // Assuming your User class has a field for base64 image data
+
+                    textViewName.setText(name);
+                    textViewEmail.setText(email);
+
+                    if (base64EncodedImage != null) {
+                        byte[] bytes = Base64.decode(base64EncodedImage, Base64.DEFAULT);
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                        imageViewProfile.setImageBitmap(bitmap);
+                        imageViewProfile.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                        imageViewProfile.setClipToOutline(true);
+                    } else {
+                        // Handle case where image data is missing (optional)
+                    }
+                }
+            }
+        }).addOnFailureListener(e -> {
+            // Handle failure
+        });
     }
+
+
 }
